@@ -9,9 +9,10 @@ class User < ApplicationRecord
   has_many :questions
 
   validates :email, :username, presence: true
-  validates :email, :username, uniqueness: true
+  validates :email, uniqueness: true
   validates :email, format: { with: /^[a-z\d_+.\-]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+$/i, message: "Это не email", multiline: true }
 
+  validates :username, uniqueness: { case_sensitive: false }
   validates :username, length: { maximum: 40, message: "Максимальная длина - 40 символов" }
   validates :username, format: { with: /\A[a-zA-Z0-9_]+\z/, message: "Имя пользователя должно содержать только буквы, цифры и _" }
 
