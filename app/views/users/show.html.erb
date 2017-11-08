@@ -36,6 +36,11 @@
 </div>
 
 <div class="column-3-4">
+  <div class='user-questions buffer-both'>
+    <div class='questions-list text-center'>
+      <h5><%= "У пользователя #{@questions.count} #{declension(@questions.count, 'вопрос', 'вопроса', 'вопросов')}" %></h5>
+    </div>
+  </div>
   <div class="user-questions buffer-both">
     <div class="questions-list">
       <% @questions.each do |question| %>
