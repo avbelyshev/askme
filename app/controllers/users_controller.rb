@@ -43,6 +43,8 @@ class UsersController < ApplicationController
     @questions_count = @questions.count
     @answers_count = @questions.where.not(answer: nil).count
     @unanswered_count = @questions_count - @answers_count
+
+    @header_background = (@user.header_background.nil? ? "#005a55" : @user.header_background)
   end
 end
 
@@ -58,5 +60,5 @@ end
 
 def user_params
   params.require(:user).permit(:email, :password, :password_confirmation,
-                               :name, :username, :avatar_url)
+                               :name, :username, :avatar_url, :header_background)
 end
