@@ -45,6 +45,7 @@ GEM
     concurrent-ruby (1.0.5)
     crass (1.0.2)
     erubi (1.7.0)
+    execjs (2.7.0)
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -70,6 +71,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    pg (0.21.0)
     rack (2.0.3)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
@@ -113,6 +115,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
+    uglifier (3.2.0)
+      execjs (>= 0.3.0, < 3)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -129,8 +133,10 @@ DEPENDENCIES
   byebug
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  pg
   rails (~> 5.1.4)
   sqlite3
+  uglifier
   web-console (>= 3.3.0)
 
 BUNDLED WITH
