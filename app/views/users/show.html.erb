@@ -14,9 +14,26 @@
   <h2 class="title-small buffer-both">
     @<%= @user.username %>
   </h2>
+</div>
 
+<div class="user-details">
   <div class="user-ask-button container text-center">
     <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
+  </div>
+
+  <div class="user-statistics container text-center">
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @questions_count %></h1>
+      <p><%= declension(@questions.count, 'вопрос', 'вопроса', 'вопросов') %></p>
+    </div>
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @answers_count %></h1>
+      <p><%= declension(@answers_count, 'ответ', 'ответа', 'ответов') %></p>
+    </div>
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @unanswered_count %></h1>
+      <p><%= declension(@unanswered_count, 'безответный', 'безответных', 'безответных') %></p>
+    </div>
   </div>
 </div>
 
