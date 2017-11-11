@@ -18,4 +18,8 @@ module ApplicationHelper
     return plural_ru if remainder.between?(2, 4)
     return plural if (remainder >= 5 || remainder.zero?)
   end
+
+  def fa_icon(icon_class)
+    content_tag 'span', '', class: "fa fa-#{icon_class}"
+  end
 end
