@@ -45,6 +45,13 @@ class UsersController < ApplicationController
 
     @header_background = (@user.header_background.nil? ? "#005a55" : @user.header_background)
   end
+
+  def destroy
+    session[:user_id] = nil
+    @user.destroy
+    @user = nil
+    redirect_to root_url, notice: 'Пользователь успешно удален!'
+  end
 end
 
 private
