@@ -30,7 +30,12 @@
 
         <div class="form-field">
           <%= f.label 'Цвет фона вашей страницы', class: 'form-label' %>
-          <%= f.color_field :header_background, class: 'form-text-field' %>
+          <% if (@user.header_background.nil? || @user.header_background.empty?) %>
+            <input id="user_header_background" class="form-text-field" value="#005a55"
+                   name="user[header_background]" type="color">
+          <% else %>
+            <%= f.color_field :header_background, class: 'form-text-field' %>
+          <% end %>
         </div>
 
         <div class="buffer-top-large buffer-bottom">
