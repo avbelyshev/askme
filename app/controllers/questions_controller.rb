@@ -14,10 +14,7 @@ class QuestionsController < ApplicationController
     @question.author_id = current_user.id if current_user.present?
 
     unless verify_recaptcha && current_user.present?
-      render(
-        html: "<script>alert('Вы наверное бот!')</script>".html_safe,
-        layout: 'application'
-      )
+      render :edit
     end
 
     if @question.save
