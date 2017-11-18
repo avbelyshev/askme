@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
 
   def check_recaptcha
     unless current_user.present? && verify_recaptcha
-      render :edit
+      redirect_to user_path(@question.user), notice: 'Вы наверное бот!'
     end
   end
 
