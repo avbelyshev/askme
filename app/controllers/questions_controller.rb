@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :load_question, only: [:edit, :update, :destroy]
   before_action :authorize_user, except: [:create]
+  before_action :check_recaptcha, only: [:create]
 
   def index
     @questions = Question.all
@@ -12,10 +13,6 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.author_id = current_user.id if current_user.present?
-
-    unless verify_recaptcha && current_user.present?
-      render :edit
-    end
 
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
@@ -48,6 +45,12 @@ class QuestionsController < ApplicationController
 
   def load_question
     @question = Question.find(params[:id])
+  end
+
+  def check_recaptcha
+    unless current_user.present? && verify_recaptcha
+      render :edit
+    end
   end
 
   def question_params
