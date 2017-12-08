@@ -26,15 +26,14 @@ class User < ApplicationRecord
     username.downcase!
   end
 
-
   def encrypt_password
     if password.present?
       self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
 
       self.password_hash = User.hash_to_string(
-          OpenSSL::PKCS5.pbkdf2_hmac(
-              password, password_salt, ITERATIONS, DIGEST.length, DIGEST
-          )
+        OpenSSL::PKCS5.pbkdf2_hmac(
+        password, password_salt, ITERATIONS, DIGEST.length, DIGEST
+        )
       )
     end
   end
@@ -49,9 +48,9 @@ class User < ApplicationRecord
     return nil unless user.present?
 
     hashed_password = User.hash_to_string(
-        OpenSSL::PKCS5.pbkdf2_hmac(
-            password, user.password_salt, ITERATIONS, DIGEST.length, DIGEST
-        )
+      OpenSSL::PKCS5.pbkdf2_hmac(
+      password, user.password_salt, ITERATIONS, DIGEST.length, DIGEST
+      )
     )
 
     return user if user.password_hash == hashed_password
