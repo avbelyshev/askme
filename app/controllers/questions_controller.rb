@@ -52,7 +52,7 @@ class QuestionsController < ApplicationController
   end
 
   def check_recaptcha?
-    check_result = (current_user.present? ? true : verify_recaptcha(message: 'Проверка не пройдена :('))
+    check_result = current_user.present? || verify_recaptcha(message: 'Проверка не пройдена :(')
   end
 
   def question_params
