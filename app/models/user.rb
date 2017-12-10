@@ -8,19 +8,20 @@ class User < ApplicationRecord
 
   has_many :questions, dependent: :delete_all
 
+  before_validation :username_downcase
   validates :email, :username, presence: true
   validates :email, uniqueness: true
   validates :email, format: { with: /\A[a-z\d_+.\-]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
 
-  validates :username, uniqueness: { case_sensitive: false }
+  validates :username, uniqueness: true
   validates :username, length: { maximum: 40 }
   validates :username, format: { with: /\A[a-zA-Z0-9_]+\z/ }
+  validates :header_background, format: { with: /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})+\z/ }
 
   validates :password, presence: true, on: :create
   validates_confirmation_of :password
 
   before_save :encrypt_password
-  before_save :username_downcase
 
   def username_downcase
     username.downcase!
