@@ -49,14 +49,7 @@ class UsersController < ApplicationController
   def destroy
     session[:user_id] = nil
 
-    @questions_by_author = Question.where(author_id: @user.id)
-    @questions_by_author.each do |q|
-      q.author_id = nil
-      q.save
-    end
-
     @user.destroy
-    @user = nil
     redirect_to root_url, notice: 'Пользователь успешно удален!'
   end
 end

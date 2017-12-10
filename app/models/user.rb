@@ -7,6 +7,7 @@ class User < ApplicationRecord
   attr_accessor :password
 
   has_many :questions, dependent: :delete_all
+  has_many :authors_questions, class_name: 'Question', foreign_key: "author_id", dependent: :nullify
 
   before_validation :username_downcase
   validates :email, :username, presence: true
@@ -16,7 +17,9 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :username, length: { maximum: 40 }
   validates :username, format: { with: /\A[a-zA-Z0-9_]+\z/ }
-  validates :header_background, format: { with: /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})+\z/ }
+  validates :header_background,
+            format: { with: /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})+\z/ },
+            unless: Proc.new { |v| v.header_background.blank? }
 
   validates :password, presence: true, on: :create
   validates_confirmation_of :password
