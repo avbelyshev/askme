@@ -16,6 +16,12 @@
       <% end %>
       <%= l(question.created_at, format: :short) %>
     </div>
+
+    <div class="question-text">
+      <% question.hashtags.order(:name).each do |tag| %>
+        <%= link_to tag.name, hashtag_path(tag) %>
+      <% end %>
+    </div>
   </div>
 
   <% if question.user == current_user %>

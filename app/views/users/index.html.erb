@@ -10,4 +10,16 @@
         </div>
       </div>
   <% end %>
+
+  <div class="content-wrapper buffer-both text-center">
+    <div class="buffer-both">
+      <h1 class="title-medium">Хэштеги</h1>
+    </div>
+
+    <div class="text-medium">
+      <% @hashtags.each do |tag| %>
+        <%= link_to tag.name, hashtag_path(tag) %>
+      <% end %>
+    </div>
+  </div>
 </div>
