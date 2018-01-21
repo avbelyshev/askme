@@ -14,7 +14,7 @@ class Question < ApplicationRecord
 
   def add_hashtags
     self.hashtags.clear
-    tags_list = (text + answer).scan(/#[\p{L}0-9_]/).map(&:downcase).uniq
+    tags_list = "#{text}#{answer}".scan(/#[\p{L}0-9_]+/).map(&:downcase).uniq
     tags_list.each do |tag|
       hashtag = Hashtag.find_or_create_by(name: tag)
       self.hashtags << hashtag

@@ -17,7 +17,7 @@
       <%= l(question.created_at, format: :short) %>
     </div>
 
-    <div class="question-text">
+    <div class="question-text buffer-top">
       <% question.hashtags.order(:name).each do |tag| %>
         <%= link_to tag.name, hashtag_path(tag) %>
       <% end %>
