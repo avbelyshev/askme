@@ -9,15 +9,12 @@ class Question < ApplicationRecord
   before_save :add_hashtags
 
   def question_author
-    User.find(author_id) unless author_id == nil
+    User.find_by(id: author_id)
   end
 
   def add_hashtags
     self.hashtags.clear
-    tags_list = "#{text}#{answer}".scan(/#[\p{L}0-9_]+/).map(&:downcase).uniq
-    tags_list.each do |tag|
-      hashtag = Hashtag.find_or_create_by(name: tag)
-      self.hashtags << hashtag
-    end
+    tags_list = Hashtag.from_string("#{text}#{answer}")
+    tags_list.each { |tag| self.hashtags << tag }
   end
 end
