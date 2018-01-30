@@ -1,24 +1,20 @@
-# README
+# Ask Me 
+Учебное приложение — клон приложения ask.fm
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+(Источник: https://ask.fm/)
 
-Things you may want to cover:
+Рассчитано на работу с Heroku.
 
-* Ruby version
+Предназначено для освоения работы с загрузкой файлов, аутентификацией, авторизацией.
 
-* System dependencies
+При желании может быть взято за основу для полезного и серьезного проекта.
 
-* Configuration
+## Описание
 
-* Database creation
+Пользователи задают вопросы другим пользователям, отвечают на вопросы, анонимно (без регистрации) или от своего имени, если они зарегистрировались.
 
-* Database initialization
+## Демо
+https://askpeoples.herokuapp.com
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Установка
+Для установки своей копии приложения, клонируйте этот репозиторий. Затем задеплойте приложение на Heroku.
